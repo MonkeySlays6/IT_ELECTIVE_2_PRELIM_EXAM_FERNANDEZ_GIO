@@ -1,3 +1,6 @@
+using System.Net;
+using System.Text.Json;
+
 namespace IT_ELECTIVE_2_PRELIM_EXAM_HttpClient.Exercises;
 
 // EXERCISE 9: GET Handle 404 Not Found
@@ -14,13 +17,26 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM_HttpClient.Exercises;
 
 public static class HandleNotFound
 {
-    public static async Task Run(System.Net.Http.HttpClient client)
+    public static async Task Run(HttpClient client)
     {
-        // TODO: Send GET request to https://themealdb.com/api/json/v1/1/lookup.php?i=999999
-        // TODO: Assert status code is 200 OK
-        // TODO: Parse the response JSON
-        // TODO: Assert that "meals" field is null (not found)
+        string url = "https://themealdb.com/api/json/v1/1/lookup.php?i=999999";
 
-        throw new NotImplementedException();
+        HttpResponseMessage response = await client.GetAsync(url);
+
+        if (response.StatusCode != HttpStatusCode.OK)
+        {
+            throw new Exception($"Expected status code 200 OK, but got {response.StatusCode}");
+        }
+
+        string responseBody = await response.Content.ReadAsStringAsync();
+
+        using JsonDocument document = JsonDocument.Parse(responseBody);
+
+        JsonElement meals = document.RootElement.GetProperty("meals");
+
+        if (meals.ValueKind != JsonValueKind.Null)
+        {
+            throw new Exception("Expected 'meals' to be null, but a meal was returned.");
+        }
     }
 }
