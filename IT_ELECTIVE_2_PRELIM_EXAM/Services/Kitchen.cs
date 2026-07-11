@@ -18,10 +18,10 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM.Services;
 
 public class Kitchen
 {
-    public string kitchenName;
-    public string headChef;
-    public int mealCount;
-    public List<Meal> meals;
+    private string kitchenName;
+    private string headChef;
+    public int mealCount { get; private set; }
+    private List<Meal> meals;
 
     public Kitchen(string name, string chef)
     {
