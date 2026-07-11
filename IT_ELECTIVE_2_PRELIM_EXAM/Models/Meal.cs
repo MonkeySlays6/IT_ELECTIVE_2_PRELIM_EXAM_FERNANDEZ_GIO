@@ -23,6 +23,7 @@ public class Meal
     public string Name { get => name; set => name = value; }
     public string Category { get => category; set => category = value; }
     public string Area { get => area; set => area = value; }
+    public int PrepTimeMinutes { get; internal set; }
 
     public Meal()
     {
