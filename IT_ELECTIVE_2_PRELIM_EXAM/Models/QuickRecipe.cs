@@ -25,7 +25,7 @@ public class QuickRecipe : RecipeBase
     }
 
     // BUG: This uses 'new' instead of 'override' - fix this!
-    public new string GetRecipeInfo()
+    public override string GetRecipeInfo()
     {
         return $"{base.GetRecipeInfo()} | Quick: Under {MaxMinutes} min";
     }
