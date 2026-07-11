@@ -1,3 +1,4 @@
+using System.Net;
 namespace IT_ELECTIVE_2_PRELIM_EXAM_HttpClient.Exercises;
 
 // EXERCISE 1: GET Random Meal
@@ -14,13 +15,22 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM_HttpClient.Exercises;
 
 public static class GetRandomMeal
 {
-    public static async Task Run(System.Net.Http.HttpClient client)
+    public static async Task Run(HttpClient client)
     {
-        // TODO: Send GET request to https://themealdb.com/api/json/v1/1/random.php
-        // TODO: Read the response content as a string
-        // TODO: Assert status code is 200 OK
-        // TODO: Assert response body is not null or empty
+        string url = "https://themealdb.com/api/json/v1/1/random.php";
 
-        throw new NotImplementedException();
+        HttpResponseMessage response = await client.GetAsync(url);
+
+        string responseBody = await response.Content.ReadAsStringAsync();
+
+        if (response.StatusCode != HttpStatusCode.OK)
+        {
+            throw new Exception($"Expected status code 200 OK, but got {response.StatusCode}");
+        }
+
+        if (string.IsNullOrEmpty(responseBody))
+        {
+            throw new Exception("Response body is null or empty");
+        }
     }
 }
