@@ -11,18 +11,18 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM.Models;
 
 public class Meal
 {
-    public string name;
-    public string category;
-    public string area;
-    public string instructions;
-    public string thumbnail;
-    public string tags;
+    private string name;
+    private string category;
+    private string area;
+    private string instructions;
+    private string thumbnail;
+    private string tags;
 
     // EXERCISE 1: Fix these stub properties to properly get/set from private fields
     // After fixing, make the fields above PRIVATE
-    public string Name { get => ""; set { } }
-    public string Category { get => ""; set { } }
-    public string Area { get => ""; set { } }
+    public string Name { get => name; set => name = value; }
+    public string Category { get => category; set => category = value; }
+    public string Area { get => area; set => area = value; }
 
     public Meal()
     {
