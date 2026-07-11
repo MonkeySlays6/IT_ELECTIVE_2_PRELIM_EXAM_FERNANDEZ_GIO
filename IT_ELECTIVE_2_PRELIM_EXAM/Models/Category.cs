@@ -22,6 +22,8 @@ public class Category
     // Currently it does nothing - fix it!
     public Category(string name, string description)
     {
+        Name = name;
+        Description = description;
     }
 
     public override string ToString()
