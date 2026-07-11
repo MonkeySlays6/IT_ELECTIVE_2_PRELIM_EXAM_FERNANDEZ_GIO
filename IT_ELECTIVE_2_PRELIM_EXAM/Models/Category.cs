@@ -14,6 +14,8 @@ public class Category
     // Currently it does nothing - fix it!
     public Category()
     {
+        Name = "";
+        Description = "";
     }
 
     // EXERCISE 4: This constructor should set Name and Description from parameters
